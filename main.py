@@ -42,11 +42,11 @@ def main():
         print("2 - Václavák")
         print("3 - Holešovice")
         volba = input("Zadej číslo lokace: ")
-        if volba == 1:
+        if volba == "1":
             osoba.zmen_lokaci(hradcany)
-        elif volba == 2:
+        elif volba == "2":
             osoba.zmen_lokaci(vaclavak)
-        elif volba == 3:
+        elif volba == "3":
             osoba.zmen_lokaci(holesovice)
         else:
             print("Neplatná volba")
