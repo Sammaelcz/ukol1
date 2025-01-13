@@ -18,6 +18,10 @@ class Lokace:
             print(f"{vypis_predmety_index} - {polozka.jmeno} {polozka.aktualni_cena},- Kč")
             vypis_predmety_index += 1
 
+    def zmen_ceny(self):
+        for predmet in self.predmety:
+            predmet.zmen_cenu()
+
 '''utopenec = Predmet("Utopenec", 50, 100)
 med = Predmet("Med", 100, 200)
 palava = Predmet("Pálava", 200, 500)

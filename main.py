@@ -92,14 +92,19 @@ def main():
             if (lokace_volba == "1"
                     and osoba.aktualni_lokace != hradcany):
                 osoba.zmen_lokaci(hradcany)
+                #osoba.aktualni_lokace.vypis_predmety()
+                hradcany.zmen_ceny()
+                #osoba.aktualni_lokace.vypis_predmety()
                 lokace_zmena = False
             elif (lokace_volba == "2"
                   and osoba.aktualni_lokace!=vaclavak):
                 osoba.zmen_lokaci(vaclavak)
+                vaclavak.zmen_ceny()
                 lokace_zmena = False
             elif (lokace_volba == "3"
                   and osoba.aktualni_lokace!=holesovice):
                 osoba.zmen_lokaci(holesovice)
+                holesovice.zmen_ceny()
                 lokace_zmena = False
             else:
                 print("\n!!!!!! ______ Neplatná volba ______ !!!!!!", end="\n\n")
