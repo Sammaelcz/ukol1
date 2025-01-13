@@ -7,8 +7,18 @@ class Lokace:
 
     def __repr__(self):
         return f"{self.jmeno} {self.predmety}"
-'''
-utopenec = Predmet("Utopenec", 50, 100)
+
+    def vypis_predmety(self):
+        for polozka in self.predmety:
+            print(f"{polozka.jmeno} {polozka.aktualni_cena},- Kč")
+
+    def vypis_predmety_index(self):
+        vypis_predmety_index = 1
+        for polozka in self.predmety:
+            print(f"{vypis_predmety_index} - {polozka.jmeno} {polozka.aktualni_cena},- Kč")
+            vypis_predmety_index += 1
+
+'''utopenec = Predmet("Utopenec", 50, 100)
 med = Predmet("Med", 100, 200)
 palava = Predmet("Pálava", 200, 500)
 
@@ -33,10 +43,4 @@ holesovice = Lokace("Holešovice", [
 
 print(hradcany.predmety[0].aktualni_cena)
 print(vaclavak.predmety[0].aktualni_cena)
-print(holesovice.predmety[0].aktualni_cena)
-
-'''
-
-
-
-
+print(holesovice.predmety[0].aktualni_cena)'''

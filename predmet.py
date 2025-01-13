@@ -20,7 +20,11 @@ class Predmet:
         self.aktualni_cena = nova_cena
 
 
-#utopenec = Predmet("Utopenec", 50, 100)
-#print(utopenec)
-#print(utopenec.zmen_cenu())
-#print(utopenec)
+'''
+utopenec = Predmet("Utopenec", 50, 100)
+med = Predmet("Utopenec", 200, 400)
+print(utopenec)
+utopenec.zmen_cenu()
+print(utopenec)
+print(med)
+'''
