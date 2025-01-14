@@ -20,20 +20,26 @@ class Osoba:
         for predmet, mnozstvi in self.inventar.items(): #items == py funkce
             print(f"- {predmet}: {mnozstvi} ks")
 
-    def koupit_predmet(self, predmet_jmeno):
-        if predmet_jmeno in self.inventar:
-            self.inventar[predmet_jmeno] += 1
+    def koupit_predmet(self, predmet_jmeno, predmet_cena):
+        if self.hotovost >= predmet_cena:
+            self.hotovost -= predmet_cena
+            if predmet_jmeno in self.inventar:
+                self.inventar[predmet_jmeno] += 1
+            else:
+                self.inventar[predmet_jmeno] = 1
         else:
-            self.inventar[predmet_jmeno] = 1
+            print("\nNemáš dost peněz!")
+            input("... pro pokračování zmáčkni 'Enter'\n")
 
-    #Dá se to napsat takhle asi
+
+
     def koupit_predmet_1(self, predmet):
         if predmet.aktualni_cena > self.hotovost:
             print(f"Nemáš dost peněz. Předmět stojí {predmet.aktualni_cena}, ale ty máš jen {self.hotovost}")
             return
 
         self.hotovost -= predmet.aktualni_cena
-        self.inventar[predmet_jmeno] = self.inventar.get(predmet_jmeno, 0) + 1
+        self.inventar[predmet.jmeno] = self.inventar.get(predmet.jmeno, 0) + 1
 
         print(f"Koupil jsi 1x {predmet.jmeno} za {predmet.aktualni_cena} Kč.")
         print(f"Zbývá ti v portmonce {self.hotovost}")
@@ -50,7 +56,7 @@ class Osoba:
         self.inventar[predmet.jmeno] -= 1
         self.hotovost += predmet.aktualni_cena
 
-        if self.inventar[predmet.jmeno] == 0
+        if self.inventar[predmet.jmeno] == 0:
             del self.inventar[predmet.jmeno]
 
         print(f"Prodal jsi 1x {predmet.jmeno} za {predmet.aktualni_cena} Kč.")

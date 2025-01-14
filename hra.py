@@ -40,7 +40,7 @@ def main():
 
     #Začátek - vstupy:
     hrac1 = Osoba(input("Napiš jméno hráče: "),
-                  100, #definuj počáteční hotovost
+                  10000, #definuj počáteční hotovost
                   hradcany) # definuj počáteční lokaci
 
     #Hlavní smyčka:
@@ -142,10 +142,16 @@ def main():
             # Výběr kupovaného předmětu
             vyber_predmet = input()
                 # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
-            if  vyber_predmet == "1":       #tady přijde enumerate a nefunguje kabát, batoh
-                predmet_jmeno = utopenec.jmeno
+            predmet = hrac1.aktualni_lokace.predmety[int(vyber_predmet)-1]
+            print(predmet)
+            hrac1.koupit_predmet_1(predmet)
+            predmet_koupit = False
+            '''if  vyber_predmet == "1":       #tady přijde enumerate a nefunguje kabát, batoh
+                predmet_jmeno = utopenec.jmeno #varianta 1
                 predmet_cena = utopenec.aktualni_cena
                 hrac1.koupit_predmet(predmet_jmeno, predmet_cena)
+                predmet = utopenec
+                hrac1.koupit_predmet_1(predmet)
                 predmet_koupit = False
             elif vyber_predmet == "2":
                 predmet_jmeno = med.jmeno
@@ -160,7 +166,7 @@ def main():
             elif vyber_predmet == "":
                 predmet_koupit = False##
             else:
-                neplatna_volba()
+                neplatna_volba()'''
 
         #3. Prodej předmětu
         while predmet_prodat == True:
@@ -176,14 +182,24 @@ def main():
             print("(Pro návrat do předchozího menu zmáčkni 'Enter' bez čísla)")
 
             # Výběr prodávaného předmětu
+            print("Předměty k prodeji:")
+            for i, (predmet, mnozstvi) in enumerate(hrac1.inventar.items()):
+                if mnozstvi > 0:
+                    print(f"{i + 1}. {predmet}: {mnozstvi} ks (Cena: {hrac1.aktualni_lokace.predmety.aktualni_cena} Kč)")
             vyber_predmet = input()
+                # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
+            predmet = hrac1.aktualni_lokace.predmety[int(vyber_predmet)-1]
+            print(predmet)
+            hrac1.koupit_predmet_1(predmet)
+            predmet_koupit = False
+            '''vyber_predmet = input()
                 # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
             if  vyber_predmet == "1": #tady přijde enumerate
                 predmet_prodat = False
             elif vyber_predmet == "":
                 predmet_prodat = False
             else:
-                neplatna_volba()
+                neplatna_volba()'''
 
     print(f"Konec hry. Máš {hrac1.hotovost}, jsi hotový boháč!")
 
