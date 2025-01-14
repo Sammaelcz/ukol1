@@ -15,7 +15,7 @@ class Lokace:
 
     def vypis_predmety_index(self):
         vypis_predmety_index = 1
-        print("Aktuálně nabízené předměty:")
+        print("Aktuální ceny předmětů:")
         for polozka in self.predmety:
             print(f"{vypis_predmety_index} - {polozka.jmeno} {polozka.aktualni_cena},- Kč")
             vypis_predmety_index += 1
