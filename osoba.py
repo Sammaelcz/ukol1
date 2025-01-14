@@ -1,5 +1,3 @@
-#from lokace import Lokace
-
 class Osoba:
     def __init__(self, jmeno, hotovost, aktualni_lokace):
         self.jmeno = jmeno
@@ -9,7 +7,6 @@ class Osoba:
         self.inventar = {}
 
     def zmen_lokaci(self, nova_lokace):
-#        print(f"Nacházíš se v: {self.aktualni_lokace.jmeno}")
         self.aktualni_lokace = nova_lokace
         self.aktualni_den += 1
         nova_lokace.zmen_cenu()
@@ -28,16 +25,3 @@ class Osoba:
             self.inventar[predmet_jmeno] += 1
         else:
             self.inventar[predmet_jmeno] = 1
-        print(f"{self.inventar} print funkce")
-
-    '''def koupit_predmet(self, predmet_jmeno):
-        if self.inventar[predmet_jmeno[1]] >= 0:
-            self.inventar[predmet_mnozstvi] += 1
-        else:
-            self.inventar[predmet_jmeno[1]] = 1
-        print(f"{self.inventar[predmet_jmeno]} print funkce")'''
-'''
-hrac1 = Osoba(100, "tu")
-hrac1.koupit_predmet("med", 2)
-print(f"{hero.inventar}print tělo")
-'''

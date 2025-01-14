@@ -114,7 +114,7 @@ def main():
             hrac1.aktualni_lokace.vypis_predmety_index()
             print("")
 
-            napis_predmet = input("Co chceš koupit? Napiš číslo:")
+            napis_predmet = input("Co chceš koupit? Napiš číslo: ")
             if  napis_predmet == "1":
                 predmet_jmeno = utopenec.jmeno
                 hrac1.koupit_predmet(predmet_jmeno)
