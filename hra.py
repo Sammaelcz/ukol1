@@ -158,7 +158,7 @@ def main():
                 hrac1.koupit_predmet(predmet_jmeno, predmet_cena)
                 predmet_koupit = False
             elif vyber_predmet == "":
-                predmet_koupit = False
+                predmet_koupit = False##
             else:
                 neplatna_volba()
 

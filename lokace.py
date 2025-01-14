@@ -32,3 +32,4 @@ class Lokace:
                 predmet.aktualni_cena = nova_cena
         else:
             pass
+##
