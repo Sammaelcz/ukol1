@@ -1,4 +1,5 @@
-from predmet import Predmet
+#from predmet import Predmet
+import random
 
 class Lokace:
     def __init__(self, jmeno, predmety):
@@ -14,13 +15,24 @@ class Lokace:
 
     def vypis_predmety_index(self):
         vypis_predmety_index = 1
+        print("Aktuálně nabízené předměty:")
         for polozka in self.predmety:
             print(f"{vypis_predmety_index} - {polozka.jmeno} {polozka.aktualni_cena},- Kč")
             vypis_predmety_index += 1
 
-    def zmen_ceny(self):
+    '''def zmen_ceny(self):
         for predmet in self.predmety:
-            predmet.zmen_cenu()
+            predmet.zmen_cenu()'''
+
+    def zmen_cenu(self):
+        for predmet in self.predmety:
+            zmena = random.randint(-5,5)
+            nova_cena = predmet.aktualni_cena + zmena
+            if nova_cena < predmet.min_cena:
+             nova_cena = predmet.min_cena[predmet]
+            elif nova_cena > predmet.max_cena:
+                nova_cena = predmet.max_cena
+            predmet.aktualni_cena = nova_cena
 
 '''utopenec = Predmet("Utopenec", 50, 100)
 med = Predmet("Med", 100, 200)
