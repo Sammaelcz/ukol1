@@ -4,6 +4,7 @@ class Lokace:
     def __init__(self, jmeno, predmety):
         self.jmeno = jmeno
         self.predmety = predmety
+        self.special = False # atribut special neprochází zmen_cenu(self)
 
     def __repr__(self):
         return f"{self.jmeno} {self.predmety}"
@@ -20,11 +21,14 @@ class Lokace:
             vypis_predmety_index += 1
 
     def zmen_cenu(self):
-        for predmet in self.predmety:
-            zmena = random.randint(-5,5)
-            nova_cena = predmet.aktualni_cena + zmena
-            if nova_cena < predmet.min_cena:
-             nova_cena = predmet.min_cena[predmet]
-            elif nova_cena > predmet.max_cena:
-                nova_cena = predmet.max_cena
-            predmet.aktualni_cena = nova_cena
+        if self.special == False:
+            for predmet in self.predmety:
+                zmena = random.randint(-5,5)
+                nova_cena = predmet.aktualni_cena + zmena
+                if nova_cena < predmet.min_cena:
+                 nova_cena = predmet.min_cena[predmet]
+                elif nova_cena > predmet.max_cena:
+                    nova_cena = predmet.max_cena
+                predmet.aktualni_cena = nova_cena
+        else:
+            pass
