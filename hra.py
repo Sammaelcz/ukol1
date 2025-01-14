@@ -134,23 +134,3 @@ def main():
     print(f"Konec hry. Máš {hrac1.hotovost}, jsi hotový boháč!")
 
 main()
-
-
-
-
-
-
-
-
-
-
-'''
-    print()
-    print(vaclavak.predmety[0].aktualni_cena)
-    print(holesovice.predmety[0].aktualni_cena)
-    print(hrac1.aktualni_lokace)
-
-    hrac1.aktualni_lokace = vaclavak.jmeno #zmena lokace
-
-    print(hrac1.aktualni_lokace)
-'''
