@@ -11,8 +11,9 @@ def main():
     kabat = Predmet("Kabát", 150, 150)
     batoh = Predmet("Batoh", 400, 400)
 
-    predmety_spolecne = [utopenec, med, palava]
-    predmety_vecerka = [kabat, batoh]
+    predmety = [utopenec, med, palava, kabat, batoh]
+    #predmety_spolecne = [utopenec, med, palava]
+    #predmety_vecerka = [kabat, batoh]
 
     '''Lokace s nastavením cen předmětů
     hradcany = Lokace("Hradčany", predmety_spolecne)
@@ -37,11 +38,13 @@ def main():
                     kabat: kabat.aktualni_cena,
                     batoh: batoh.aktualni_cena,})
 
+    lokace_seznam = [hradcany.jmeno, vaclavak.jmeno, holesovice.jmeno, vecerka.jmeno]
+
     vecerka.special = True # Lokace.special neprochází funkcí změny cen
 
     #Začátek - vstupy:
     hrac1 = Osoba(input("Napiš jméno hráče: "),
-                  100, #definuj počáteční hotovost
+                  1000, #definuj počáteční hotovost
                   hradcany) # definuj počáteční lokaci
 
     #Hlavní smyčka:
@@ -49,8 +52,8 @@ def main():
     while hrac1.aktualni_den < konec_hry:
 
         # Vypsání textu
-        print(f"Je den {hrac1.aktualni_den}.")
         print(f"Nacházíš se v lokaci: {hrac1.aktualni_lokace.jmeno}")
+        print(f"Dny: {hrac1.aktualni_den}, Peníze: {hrac1.hotovost} Kč")
         print("Aktuální ceny předmětů:")
         #hrac1.aktualni_lokace.vypis_predmety()
         for predmet, cena in hrac1.aktualni_lokace.predmety.items():
@@ -58,7 +61,7 @@ def main():
         #hrac1.vypis_hotovost()
         print("Inventář:")
         for predmet, mnozstvi in hrac1.inventar.items():
-            print(f"{predmet.jmeno} {mnozstvi}")
+            print(f"{predmet} {mnozstvi}")
         #hrac1.vypis_inventar()
         print(f"Napiš číslo, co chceš udělat:")
         print(f"Změnit lokaci: 1")
@@ -74,13 +77,22 @@ def main():
 
                 # Vypsání textu
                 print(f"Macházíš se v lokaci: {hrac1.aktualni_lokace.jmeno}")
-                print("Seznam lokací:")
-                print("1 - Hradčany")
-                print("2 - Václavák")
-                print("3 - Holešovice")
-                print("4 - Večerka")
+                print("Lokace na výběr:")
+                for index, lokace_jmeno in enumerate(lokace_seznam):
+                    print(f"{index + 1}. {lokace_jmeno}")
                 print("")
-                print("Napiš číslo lokace, kam se chceš přesunout:")
+
+                # Volba nové lokace
+                    # Tohle řešení je lepší, ale v lokace_volba přijde místo: hradcany - Hradčany, tím pádem
+                        # to rozbije Osoba.zmen_lokaci a Lokace.zmen_cenu
+                        # dodělat později
+                '''lokace_volba = int(input("Napiš číslo lokace, kam se chceš přesunout: ")) - 1
+                if 0 <= lokace_volba < len(lokace_seznam):
+                    nova_lokace = lokace_seznam[lokace_volba]
+                    hrac1.zmen_lokaci(nova_lokace) #
+
+                else:
+                    print("Neplatná volba.")'''
 
                 # Volba nové lokace
                 lokace_volba = int(input())
@@ -101,20 +113,35 @@ def main():
             elif volba_akce == 2:
 
                 # Vypsání textu
-                hrac1.vypis_hotovost()
+
+                print("Předměty k nákupu:")
+                for index, (predmet, cena) in enumerate(hrac1.aktualni_lokace.predmety.items()):
+                    print(f"{index + 1}. {predmet.jmeno}: {cena} Kč")
+                print(f"Máš: {hrac1.hotovost} Kč")
+                print("Inventář:")
+                for predmet, mnozstvi in hrac1.inventar.items():
+                    print(f"{predmet} {mnozstvi}")
+                print()
+
+                """hrac1.vypis_hotovost()
                 hrac1.vypis_inventar()
                 print("")
                 hrac1.aktualni_lokace.vypis_predmety_index()
                 print("")
-                print("Co chceš koupit? Napiš číslo: ")
+                print("Co chceš koupit? Napiš číslo: ")"""
+
 
                 # Výběr kupovaného předmětu
-                vyber_predmet = input()
-                    # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
+                vyber_predmet = int(input("Co chceš koupit? Napiš číslo: ")) - 1
+                if 0 <= vyber_predmet < len(predmety):
+                    predmet = predmety[vyber_predmet]
+                    hrac1.koupit_predmet_1(predmet)
+
+                # Verze pro list
+                '''print(hrac1.aktualni_lokace.predmety)
                 predmet = hrac1.aktualni_lokace.predmety[int(vyber_predmet)-1]
-                print(predmet)
-                hrac1.koupit_predmet_1(predmet)
-                predmet_koupit = False
+                hrac1.koupit_predmet_1(predmet)'''
+
                 '''if  vyber_predmet == "1":       #tady přijde enumerate a nefunguje kabát, batoh
                     predmet_jmeno = utopenec.jmeno #varianta 1
                     predmet_cena = utopenec.aktualni_cena
