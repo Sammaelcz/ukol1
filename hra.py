@@ -23,20 +23,20 @@ def main():
 
     # Lokace s predměty s aktuální cenou v {}, aby se listovat přes items()
     hradcany = Lokace("Hradčany",{
-                    utopenec: utopenec.aktualni_cena,
-                    med: med.aktualni_cena,
-                    palava: palava.aktualni_cena})
+                    utopenec.jmeno: utopenec.aktualni_cena,
+                    med.jmeno: med.aktualni_cena,
+                    palava.jmeno: palava.aktualni_cena})
     vaclavak = Lokace("Václavák",{
-                    utopenec: utopenec.aktualni_cena,
-                    med: med.aktualni_cena,
-                    palava: palava.aktualni_cena})
+                    utopenec.jmeno: utopenec.aktualni_cena,
+                    med.jmeno: med.aktualni_cena,
+                    palava.jmeno: palava.aktualni_cena})
     holesovice = Lokace("Holešovice",{
-                    utopenec: utopenec.aktualni_cena,
-                    med: med.aktualni_cena,
-                    palava: palava.aktualni_cena})
+                    utopenec.jmeno: utopenec.aktualni_cena,
+                    med.jmeno: med.aktualni_cena,
+                    palava.jmeno: palava.aktualni_cena})
     vecerka = Lokace("Večerka", {
-                    kabat: kabat.aktualni_cena,
-                    batoh: batoh.aktualni_cena,})
+                    kabat.jmeno: kabat.aktualni_cena,
+                    batoh.jmeno: batoh.aktualni_cena,})
 
     lokace_seznam = [hradcany.jmeno, vaclavak.jmeno, holesovice.jmeno, vecerka.jmeno]
 
@@ -57,11 +57,11 @@ def main():
         print("Aktuální ceny předmětů:")
         #hrac1.aktualni_lokace.vypis_predmety()
         for predmet, cena in hrac1.aktualni_lokace.predmety.items():
-            print(f"{predmet.jmeno} {cena}")
+            print(f"{predmet} {cena}")
         #hrac1.vypis_hotovost()
         print("Inventář:")
         for predmet, mnozstvi in hrac1.inventar.items():
-            print(f"{predmet} {mnozstvi}")
+            print(f"{predmet.jmeno} {mnozstvi}")
         #hrac1.vypis_inventar()
         print(f"Napiš číslo, co chceš udělat:")
         print(f"Změnit lokaci: 1")
@@ -101,6 +101,12 @@ def main():
                     hrac1.zmen_lokaci(hradcany)
                 elif (lokace_volba == 2
                       and hrac1.aktualni_lokace!=vaclavak):
+                    print(vaclavak.predmety)
+                    print(vaclavak.predmety['Utopenec'])
+                    print(vaclavak.predmety.items())
+                    #print(vaclavak.predmety[utopenec].aktualni_cena)
+                    #print(vaclavak.predmety[utopenec.aktualni_cena])
+                    input()
                     hrac1.zmen_lokaci(vaclavak)
                 elif (lokace_volba == 3
                       and hrac1.aktualni_lokace!=holesovice):
@@ -116,7 +122,10 @@ def main():
 
                 print("Předměty k nákupu:")
                 for index, (predmet, cena) in enumerate(hrac1.aktualni_lokace.predmety.items()):
-                    print(f"{index + 1}. {predmet.jmeno}: {cena} Kč")
+                    if hrac1.aktualni_lokace == vecerka:
+                        print(f"{index + 4}. {predmet.jmeno}: {cena} Kč")
+                    else:
+                        print(f"{index + 1}. {predmet.jmeno}: {cena} Kč")
                 print(f"Máš: {hrac1.hotovost} Kč")
                 print("Inventář:")
                 for predmet, mnozstvi in hrac1.inventar.items():
