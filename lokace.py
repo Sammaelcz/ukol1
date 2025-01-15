@@ -28,7 +28,7 @@ class Lokace:
 
     def zmen_cenu(self):
         if self.special == False:
-            for x in self.predmety.values():
+            for x in self.predmety():
                 zmena = random.randint(-5,5)
                 nova_cena = self.predmety[x] + zmena
                 if nova_cena < x.min_cena:
