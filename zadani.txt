@@ -1,32 +1,33 @@
 Zadání pro mini-projekt.
-Výstupem teamu je jeden kód.
+Výstupem teamu je jeden kód.#
 Vždy jeden sdílí obrazovku a ostatní mu radí.
 Po cca 20 minutách se prostřídáte.
 
-Základ:
+Základ: Máme
 Hra, kde máte peníze - 100 Kč.
 Je možné chodit mezi lokacemi (Hradčany, Václavák, Holešovice)
 Při přechodu do jiné lokace je přičte počet dnů.
 Po 14-ti dnech hra končí
 Vypíše se finální počet peněz.
 
-Rozšíření 1:
+Rozšíření 1: Máme
 V každé lokace je možné kupovat předměty:
 Utopenec (50-100kč)
 Med (100-200kč)
 Láhev pálavy (200-500kč)
 
+Nemáme:
 Ve všech lokacích mohu prodat a koupit tyto předměty v libovolném množství (mám inventář svých věcí).
 V každé lokaci je cena jiná - pevně určená v programu
 Nemůžu nakoupit víc předmětů než mám peněz.
 Nemůžu prodat předměty, které nemám.
 
-Rozšíření 2:
+Rozšíření 2: Máme
 Každé místo má náhodně vygenerovanou cenu pro předměty.
 Pokaždé, když k místu přijdu, tak se cena u všech předmětů změní o náhodnou hodnotu (-5 až +5).
 Př. na začáku je cena Utopence na Hradčanech 60kč. Když přijdu na Hradčany poprvé, cena se zvedne o 2 kč -> 62kč. Když přijdu na Hradčany podruhé, cena se sníží o 5kč-> 57kč.
 
-Rozšíření 3:
+Rozšíření 3: Nemáme
 Máme limitovaný počet předmětů (2), které si můžeme koupit.
 Je možné zajít do speciální lokace "Večerka", kde je možné si koupit kabát, který
 nám rozšíří inventář o 2 předměty (cena je 150kč).
