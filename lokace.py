@@ -28,14 +28,20 @@ class Lokace:
 
     def zmen_cenu(self):
         if self.special == False:
-            for x in self.predmety():
+            for x in self.predmety:
                 zmena = random.randint(-5,5)
                 nova_cena = self.predmety[x] + zmena
+                '''print(self.predmety)
+                print(self.predmety[x])
+                print(nova_cena)
+                print(x)
+                input()'''
                 if nova_cena < x.min_cena:
                  nova_cena = x.min_cena[x.aktualni_cena]
                 elif nova_cena > x.max_cena:
                     nova_cena = x.max_cena
                 self.predmety[x] = nova_cena
+                """self.predmety[x] = max(x.min_cena, min(x.max_cena, nova_cena))"""
         else:
             pass
 

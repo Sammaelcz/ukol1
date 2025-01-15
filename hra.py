@@ -1,6 +1,8 @@
 from predmet import Predmet
 from lokace import Lokace
 from osoba import Osoba
+import random
+
 # Hlavní program
 def main():
 
@@ -11,9 +13,7 @@ def main():
     kabat = Predmet("Kabát", 150, 150)
     batoh = Predmet("Batoh", 400, 400)
 
-    predmety = [utopenec, med, palava, kabat, batoh]
-    #predmety_spolecne = [utopenec, med, palava]
-    #predmety_vecerka = [kabat, batoh]
+
 
     '''Lokace s nastavením cen předmětů
     hradcany = Lokace("Hradčany", predmety_spolecne)
@@ -23,22 +23,38 @@ def main():
 
     # Lokace s predměty s aktuální cenou v {}, aby se listovat přes items()
     hradcany = Lokace("Hradčany",{
-                    utopenec.jmeno: utopenec.aktualni_cena,
-                    med.jmeno: med.aktualni_cena,
-                    palava.jmeno: palava.aktualni_cena})
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
+
+    utopenec.vygeneruj_novou_aktualni_cenu()
+    med.vygeneruj_novou_aktualni_cenu()
+    palava.vygeneruj_novou_aktualni_cenu()
+
     vaclavak = Lokace("Václavák",{
-                    utopenec.jmeno: utopenec.aktualni_cena,
-                    med.jmeno: med.aktualni_cena,
-                    palava.jmeno: palava.aktualni_cena})
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
+
+    utopenec.vygeneruj_novou_aktualni_cenu()
+    med.vygeneruj_novou_aktualni_cenu()
+    palava.vygeneruj_novou_aktualni_cenu()
+
     holesovice = Lokace("Holešovice",{
-                    utopenec.jmeno: utopenec.aktualni_cena,
-                    med.jmeno: med.aktualni_cena,
-                    palava.jmeno: palava.aktualni_cena})
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
     vecerka = Lokace("Večerka", {
-                    kabat.jmeno: kabat.aktualni_cena,
-                    batoh.jmeno: batoh.aktualni_cena,})
+                    kabat: kabat.aktualni_cena,
+                    batoh: batoh.aktualni_cena,})
 
     lokace_seznam = [hradcany.jmeno, vaclavak.jmeno, holesovice.jmeno, vecerka.jmeno]
+
+    predmety = [utopenec, med, palava, kabat, batoh]
+    # predmety_spolecne = [utopenec, med, palava]
+    # predmety_vecerka = [kabat, batoh]
+
+
 
     vecerka.special = True # Lokace.special neprochází funkcí změny cen
 
@@ -50,18 +66,20 @@ def main():
     #Hlavní smyčka:
     konec_hry = 15
     while hrac1.aktualni_den < konec_hry:
-
+        print(hradcany.predmety)
+        print(vaclavak.predmety)
+        print(holesovice.predmety)
         # Vypsání textu
         print(f"Nacházíš se v lokaci: {hrac1.aktualni_lokace.jmeno}")
         print(f"Dny: {hrac1.aktualni_den}, Peníze: {hrac1.hotovost} Kč")
         print("Aktuální ceny předmětů:")
         #hrac1.aktualni_lokace.vypis_predmety()
         for predmet, cena in hrac1.aktualni_lokace.predmety.items():
-            print(f"{predmet} {cena}")
+            print(f"{predmet.jmeno} {cena}")
         #hrac1.vypis_hotovost()
         print("Inventář:")
         for predmet, mnozstvi in hrac1.inventar.items():
-            print(f"{predmet.jmeno} {mnozstvi}")
+            print(f"{predmet} {mnozstvi}")
         #hrac1.vypis_inventar()
         print(f"Napiš číslo, co chceš udělat:")
         print(f"Změnit lokaci: 1")
@@ -101,12 +119,9 @@ def main():
                     hrac1.zmen_lokaci(hradcany)
                 elif (lokace_volba == 2
                       and hrac1.aktualni_lokace!=vaclavak):
-                    print(vaclavak.predmety)
-                    print(vaclavak.predmety['Utopenec'])
+                    '''print(vaclavak.predmety)
                     print(vaclavak.predmety.items())
-                    #print(vaclavak.predmety[utopenec].aktualni_cena)
-                    #print(vaclavak.predmety[utopenec.aktualni_cena])
-                    input()
+                    input()'''
                     hrac1.zmen_lokaci(vaclavak)
                 elif (lokace_volba == 3
                       and hrac1.aktualni_lokace!=holesovice):
