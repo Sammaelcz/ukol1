@@ -10,14 +10,33 @@ def main():
     palava = Predmet("Pálava", 200, 500)
     kabat = Predmet("Kabát", 150, 150)
     batoh = Predmet("Batoh", 400, 400)
+
     predmety_spolecne = [utopenec, med, palava]
     predmety_vecerka = [kabat, batoh]
 
-    # Lokace s nastavením cen předmětů
+    '''Lokace s nastavením cen předmětů
     hradcany = Lokace("Hradčany", predmety_spolecne)
     vaclavak = Lokace("Václavák", predmety_spolecne)
     holesovice = Lokace("Holešovice", predmety_spolecne)
-    vecerka = Lokace("Večerka", predmety_vecerka)
+    vecerka = Lokace("Večerka", predmety_vecerka)'''
+
+    # Lokace s predměty s aktuální cenou v {}, aby se listovat přes items()
+    hradcany = Lokace("Hradčany",{
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
+    vaclavak = Lokace("Václavák",{
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
+    holesovice = Lokace("Holešovice",{
+                    utopenec: utopenec.aktualni_cena,
+                    med: med.aktualni_cena,
+                    palava: palava.aktualni_cena})
+    vecerka = Lokace("Večerka", {
+                    kabat: kabat.aktualni_cena,
+                    batoh: batoh.aktualni_cena,})
+
     vecerka.special = True # Lokace.special neprochází funkcí změny cen
 
     #Začátek - vstupy:
@@ -27,19 +46,20 @@ def main():
 
     #Hlavní smyčka:
     konec_hry = 15
-
     while hrac1.aktualni_den < konec_hry:
 
         # Vypsání textu
         print(f"Je den {hrac1.aktualni_den}.")
-        print("")
-        print(f"Nacházíš se v lokaci: {hrac1.aktualni_lokace.jmeno})")
+        print(f"Nacházíš se v lokaci: {hrac1.aktualni_lokace.jmeno}")
         print("Aktuální ceny předmětů:")
-        hrac1.aktualni_lokace.vypis_predmety()
-        print("")
-        hrac1.vypis_hotovost()
-        hrac1.vypis_inventar()
-        print("")
+        #hrac1.aktualni_lokace.vypis_predmety()
+        for predmet, cena in hrac1.aktualni_lokace.predmety.items():
+            print(f"{predmet.jmeno} {cena}")
+        #hrac1.vypis_hotovost()
+        print("Inventář:")
+        for predmet, mnozstvi in hrac1.inventar.items():
+            print(f"{predmet.jmeno} {mnozstvi}")
+        #hrac1.vypis_inventar()
         print(f"Napiš číslo, co chceš udělat:")
         print(f"Změnit lokaci: 1")
         print(f"Nakoupit předmět: 2")
@@ -48,9 +68,9 @@ def main():
         # Volba akce
         try:
             volba_akce = int(input("Zvolte akci: "))
-            if volba_akce == 1:
 
-                # 1. Změna lokace
+            # 1. Změna lokace
+            if volba_akce == 1:
 
                 # Vypsání textu
                 print(f"Macházíš se v lokaci: {hrac1.aktualni_lokace.jmeno}")
@@ -61,25 +81,24 @@ def main():
                 print("4 - Večerka")
                 print("")
                 print("Napiš číslo lokace, kam se chceš přesunout:")
-                print("(Pro návrat do předchozího menu zmáčkni 'Enter' bez čísla)")
 
                 # Volba nové lokace
-                lokace_volba = input()
-                if (lokace_volba == "1"
+                lokace_volba = int(input())
+                if (lokace_volba == 1
                         and hrac1.aktualni_lokace != hradcany):
                     hrac1.zmen_lokaci(hradcany)
-                elif (lokace_volba == "2"
+                elif (lokace_volba == 2
                       and hrac1.aktualni_lokace!=vaclavak):
                     hrac1.zmen_lokaci(vaclavak)
-                elif (lokace_volba == "3"
+                elif (lokace_volba == 3
                       and hrac1.aktualni_lokace!=holesovice):
                     hrac1.zmen_lokaci(holesovice)
-                elif (lokace_volba == "4"
+                elif (lokace_volba == 4
                       and hrac1.aktualni_lokace!=vecerka):
                     hrac1.zmen_lokaci(vecerka)
 
-            #2. Koupě předmětu
-            while predmet_koupit == True:
+            # 2. Koupě předmětu
+            elif volba_akce == 2:
 
                 # Vypsání textu
                 hrac1.vypis_hotovost()
@@ -88,7 +107,6 @@ def main():
                 hrac1.aktualni_lokace.vypis_predmety_index()
                 print("")
                 print("Co chceš koupit? Napiš číslo: ")
-                print("(Pro návrat do předchozího menu zmáčkni 'Enter' bez čísla)")
 
                 # Výběr kupovaného předmětu
                 vyber_predmet = input()
@@ -119,8 +137,8 @@ def main():
                 else:
                     neplatna_volba()'''
 
-            #3. Prodej předmětu
-            while predmet_prodat == True:
+            # 3. Prodej předmětu
+            elif volba_akce == 3:
 
                 # Vypsání textu
 
@@ -130,7 +148,6 @@ def main():
                 hrac1.vypis_inventar() # nutno vypsat indexy pod kterými prodávat
                 print("")
                 print("Co chceš prodat? Napiš číslo: ")
-                print("(Pro návrat do předchozího menu zmáčkni 'Enter' bez čísla)")
 
                 # Výběr prodávaného předmětu
                 print("Předměty k prodeji:")
