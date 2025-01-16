@@ -36,9 +36,9 @@ def main():
                     med: med.aktualni_cena,
                     palava: palava.aktualni_cena})
 
-    utopenec.vygeneruj_novou_aktualni_cenu()
+    '''utopenec.vygeneruj_novou_aktualni_cenu()
     med.vygeneruj_novou_aktualni_cenu()
-    palava.vygeneruj_novou_aktualni_cenu()
+    palava.vygeneruj_novou_aktualni_cenu()'''
 
     holesovice = Lokace("Holešovice",{
                     utopenec: utopenec.aktualni_cena,
@@ -46,11 +46,15 @@ def main():
                     palava: palava.aktualni_cena})
     vecerka = Lokace("Večerka", {
                     kabat: kabat.aktualni_cena,
-                    batoh: batoh.aktualni_cena,})
+                    batoh: batoh.aktualni_cena})
 
     lokace_seznam = [hradcany.jmeno, vaclavak.jmeno, holesovice.jmeno, vecerka.jmeno]
 
-    predmety = [utopenec, med, palava, kabat, batoh]
+    '''predmety = [utopenec, med, palava, kabat, batoh]'''
+    predmety_dict = [hradcany.predmety,
+                     vaclavak.predmety,
+                     holesovice.predmety,
+                     vecerka.predmety]
     # predmety_spolecne = [utopenec, med, palava]
     # predmety_vecerka = [kabat, batoh]
 
@@ -157,8 +161,8 @@ def main():
 
                 # Výběr kupovaného předmětu
                 vyber_predmet = int(input("Co chceš koupit? Napiš číslo: ")) - 1
-                if 0 <= vyber_predmet < len(predmety):
-                    predmet = predmety[vyber_predmet]
+                if 0 <= vyber_predmet < len(predmety_dict):
+                    predmet = predmety_dict[vyber_predmet]
                     hrac1.koupit_predmet_1(predmet)
 
                 # Verze pro list

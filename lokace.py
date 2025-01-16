@@ -28,20 +28,20 @@ class Lokace:
 
     def zmen_cenu(self):
         if self.special == False: #stejný jako napsat: if not self.special:
-            for x in self.predmety: #self.predmety je slovnik {utopenec: 80, med: 150, palava: 450} a probíhá iterace přes klíče
+            for klic in self.predmety: #self.predmety je slovnik {utopenec: 80, med: 150, palava: 450} a probíhá iterace přes klíče
                 zmena = random.randint(-5,5)
-                nova_cena = self.predmety[x] + zmena #self.predmety[x] je hodnota toho klíče např. utopence takže cena 80
+                nova_cena = self.predmety[klic] + zmena #self.predmety[klic] je hodnota toho klíče např. utopence takže cena 80
                 '''print(self.predmety)
-                print(self.predmety[x])
+                print(self.predmety[klic])
                 print(nova_cena)
-                print(x)
+                print(klic)
                 input()'''
-                if nova_cena < x.min_cena:
-                 nova_cena = x.min_cena[x.aktualni_cena]
-                elif nova_cena > x.max_cena:
-                    nova_cena = x.max_cena
-                self.predmety[x] = nova_cena
-                """self.predmety[x] = max(x.min_cena, min(x.max_cena, nova_cena))"""
+                if nova_cena < klic.min_cena:
+                 nova_cena = klic.min_cena[klic.aktualni_cena]
+                elif nova_cena > klic.max_cena:
+                    nova_cena = klic.max_cena
+                self.predmety[klic] = nova_cena
+                """self.predmety[klic] = max(x.min_cena, min(x.max_cena, nova_cena))"""
         else:
             pass
 

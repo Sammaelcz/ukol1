@@ -20,7 +20,7 @@ class Osoba:
         for predmet, mnozstvi in self.inventar.items(): #items == py funkce
             print(f"- {predmet}: {mnozstvi} ks")
 
-    def koupit_predmet(self, predmet_jmeno, predmet_cena):
+    '''def koupit_predmet(self, predmet_jmeno, predmet_cena):
         if self.hotovost >= predmet_cena:
             self.hotovost -= predmet_cena
             if predmet_jmeno in self.inventar:
@@ -29,19 +29,27 @@ class Osoba:
                 self.inventar[predmet_jmeno] = 1
         else:
             print("\nNemáš dost peněz!")
-            input("... pro pokračování zmáčkni 'Enter'\n")
-
+            input("... pro pokračování zmáčkni 'Enter'\n")'''
 
 
     def koupit_predmet_1(self, predmet):
-        if predmet.aktualni_cena > self.hotovost:
+        print(f"{predmet}") # {Utopenec 50 100 72: 59, Med 100 200 142: 136, Pálava 200 500 377: 481}
+        print(f"{predmet.values()}") # dict_values([59, 136, 481])
+        print(f"{list(predmet.values())}") # [59, 136, 481]
+        input() #vyextrahovat hodnotu ze slovniku
+        if predmet.aktualni_cena > self.hotovost: #AttributeError: 'dict' object has no attribute 'aktualni_cena'
+        #if predmet > self.hotovost: #TypeError: '>' not supported between instances of 'dict' and 'int'
+
+
             print(f"Nemáš dost peněz. Předmět stojí {predmet.aktualni_cena}, ale ty máš jen {self.hotovost}")
             return
 
         self.hotovost -= predmet.aktualni_cena
         self.inventar[predmet.jmeno] = self.inventar.get(predmet.jmeno, 0) + 1
 
-        print(f"Koupil jsi 1x {predmet.jmeno} za {predmet.aktualni_cena} Kč.")
+
+        print(f"{predmet}")
+        print(f"Koupil jsi 1x {predmet.jmeno} za {predmet} Kč.")
         print(f"Zbývá ti v portmonce {self.hotovost}")
 
 
@@ -58,7 +66,6 @@ class Osoba:
 
         else:
             print(f"\nNemáš předmět {predmet_jmeno} v inventáři")
-            input("... pro pokračování zmáčkni 'Enter'\n")
 
 
 
