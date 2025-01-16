@@ -45,16 +45,16 @@ class Osoba:
         print(f"Zbývá ti v portmonce {self.hotovost}")
 
 
-    def prodat_predmet(self, predmet_jmeno, predmet_cena):
+    def prodat_predmet(self, predmet_jmeno, cena):
 
         if predmet_jmeno in self.inventar and self.inventar[predmet_jmeno] > 0:
-            self.inventar[predmet_jmenojmeno] -= 1
-            self.hotovost += predmet_cena
-            print(f"Prodal jsi 1x {predmet.jmeno} za {predmet.aktualni_cena} Kč.")
+            self.inventar[predmet_jmeno] -= 1
+            self.hotovost += cena
+            print(f"Prodal jsi 1x {predmet_jmeno} za {cena} Kč.")
             print(f"Máš v portmonce {self.hotovost}")
 
-            if self.inventar[predmet.jmeno] == 0:
-                del self.inventar[predmet.jmeno]
+            if self.inventar[predmet_jmeno] == 0:
+                del self.inventar[predmet_jmeno]
 
         else:
             print(f"\nNemáš předmět {predmet_jmeno} v inventáři")

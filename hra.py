@@ -192,25 +192,54 @@ def main():
             elif volba_akce == 3:
 
                 # Vypsání textu
-
+                """
                 print("Aktuální ceny předmětů:")
                 hrac1.aktualni_lokace.vypis_predmety() #vypsat pouze ty, které jsou v inventáři
                 print("")
                 hrac1.vypis_inventar() # nutno vypsat indexy pod kterými prodávat
                 print("")
                 print("Co chceš prodat? Napiš číslo: ")
-
+                """
                 # Výběr prodávaného předmětu
                 print("Předměty k prodeji:")
-                for i, (predmet, mnozstvi) in enumerate(hrac1.inventar.items()):
+                for i, (predmet_jmeno, mnozstvi) in enumerate(hrac1.inventar.items()):
                     if mnozstvi > 0:
-                        print(f"{i + 1}. {predmet}: {mnozstvi} ks (Cena: {hrac1.aktualni_lokace.predmety.aktualni_cena} Kč)")
-                vyber_predmet = input()
-                    # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
-                predmet = hrac1.aktualni_lokace.predmety[int(vyber_predmet)-1]
-                print(predmet)
-                hrac1.koupit_predmet_1(predmet)
-                predmet_koupit = False
+                        predmet_klic = None
+
+                        for klic in hrac1.aktualni_lokace.predmety:
+                            if klic.jmeno == predmet_jmeno:
+                                predmet_klic = klic
+                                break
+
+                        if predmet_klic:
+                            cena = hrac1.aktualni_lokace.predmety[predmet_klic]
+                            print(f"{i + 1}. {predmet_jmeno}: {mnozstvi} ks za {cena} Kč")
+
+                vyber_predmet = input("Zadej číslo předmětu k prodeji: ")
+
+                vyber_predmet = int(vyber_predmet) - 1
+                if 0 <= vyber_predmet < len(hrac1.inventar):
+                    predmet_jmeno = list(hrac1.inventar.keys())[vyber_predmet]
+
+                    predmet_klic = None
+
+                    for klic in hrac1.aktualni_lokace.predmety:
+                        if klic.jmeno == predmet_jmeno:
+                            predmet_klic = klic
+                            break
+
+                    if predmet_klic:
+                        cena = hrac1.aktualni_lokace.predmety[predmet_klic]
+                        hrac1.prodat_predmet(predmet_jmeno, cena)
+                    else:
+                        print(f"\nPředmět {predmet_jmeno} není dostupný v této lokaci!")
+                else:
+                    print("Neplatný výběr.")
+
+
+
+
+
                 '''vyber_predmet = input()
                     # Nepoužiji int(). Program by skočil do ValueError místo neplatné volby.
                 if  vyber_predmet == "1": #tady přijde enumerate
